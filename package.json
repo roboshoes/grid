@@ -1,0 +1,14 @@
+{
+  "name": "path-creation",
+  "description": "generate animated random path",
+  "devDependencies": {
+    "gulp": "~3.8.11",
+    "gulp-browserify": "^0.5.1",
+    "gulp-connect": "^2.2.0",
+    "gulp-jade": "^1.0.0",
+    "gulp-util": "^3.0.4"
+  },
+  "dependencies": {
+    "mout": "^0.11.0"
+  }
+}

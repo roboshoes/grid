@@ -17,6 +17,7 @@ exports.generate = function( x, y, context ) {
 
     self.render = function() {
         t += config.speed;
+        t = Math.min( t, 1 );
 
         var size = Math.ceil( config.size * t );
         var half = Math.ceil( config.size * t * 0.5 );
@@ -60,7 +61,7 @@ exports.generate = function( x, y, context ) {
         return true;
     };
 
-    self.updateAvailablity = function( value ) {
+    self.updateAvailability = function( value ) {
         available = available && value;
     };
 

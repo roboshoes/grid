@@ -7,7 +7,7 @@ var matrix;
 var activeTiles;
 var context;
 var gridSize = 0;
-var checkPool = [];
+var checkPool = window.checkPool = [];
 
 exports.setContext = function( value ) {
     context = value;
@@ -51,7 +51,7 @@ exports.start = function( x, y ) {
 
     var next = matrix[ y ][ x ];
 
-    next.updateAvailablity( false );
+    next.updateAvailability( false );
 
     activeTiles.push( next );
 };
@@ -91,24 +91,23 @@ function next() {
     var probe;
     var tile;
 
-    while ( checkPool.length ) {
+
+    while ( checkPool.length > 0 ) {
 
         probe = checkPool[ 0 ];
         tile = probe.getAvailableNeighbor();
 
         if ( tile ) {
+
+            tile.updateAvailability( false );
+            activeTiles.push( tile );
+
             break;
+
         } else {
-            checkPool.pop();
+
+            checkPool.shift();
+
         }
     }
-
-    console.log( activeTiles );
-    return;
-
-    if ( tile ) {
-        tile.updateAvailablity( false );
-        activeTiles.push( tile );
-    }
-
 }

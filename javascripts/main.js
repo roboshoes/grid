@@ -9,7 +9,7 @@ function init() {
     clear();
 
     grid.setContext( context );
-    grid.generate( 30 );
+    grid.generate( 20 );
     grid.start();
 
     render();

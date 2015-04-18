@@ -1,4 +1,4 @@
 module.exports = {
-    size: 20,
+    size: 10,
     speed: 0.1
 };

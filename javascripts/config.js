@@ -1,4 +1,5 @@
 module.exports = {
-    size: 10,
-    speed: 0.1
+    size: 20,
+    speed: 0.1,
+    gridsize: 30
 };

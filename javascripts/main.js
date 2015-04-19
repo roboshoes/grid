@@ -1,5 +1,6 @@
 var grid = require( "./grid" );
 var stage = require( "./stage" );
+var config = require( "./config" );
 
 var canvas = document.querySelector( "#canvas" );
 var context = canvas.getContext( "2d" );
@@ -9,8 +10,11 @@ function init() {
     clear();
 
     grid.setContext( context );
-    grid.generate( 20 );
-    grid.start();
+    grid.generate( config.gridsize );
+
+    var center = Math.floor( config.gridsize / 2 );
+
+    grid.start( center, center );
 
     render();
 }

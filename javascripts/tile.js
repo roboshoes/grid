@@ -13,7 +13,7 @@ exports.generate = function( x, y, context ) {
     self.y = y;
 
     self.setNeighbors = function( array ) {
-        neighbors = array;
+        neighbors = shuffle( array );
     };
 
     self.setCorners = function( array ) {
@@ -42,10 +42,8 @@ exports.generate = function( x, y, context ) {
     self.getAvailableNeighbor = function() {
         var current;
 
-        var shuffled = shuffle( neighbors );
-
-        for ( var i = shuffled.length - 1; i >= 0; i-- ) {
-            current = shuffled[ i ];
+        for ( var i = neighbors.length - 1; i >= 0; i-- ) {
+            current = neighbors[ i ];
 
             if ( current.hasSaveSurrounding( self ) ) {
                 return current;

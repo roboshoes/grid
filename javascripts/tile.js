@@ -6,6 +6,7 @@ exports.generate = function( x, y, context ) {
     var self = {};
     var t = 0;
     var neighbors;
+    var cornsers;
     var available = true;
 
     self.x = x;
@@ -15,7 +16,13 @@ exports.generate = function( x, y, context ) {
         neighbors = array;
     };
 
+    self.setCorners = function( array ) {
+        cornsers = array;
+    };
+
     self.render = function() {
+        available = false;
+
         t += config.speed;
         t = Math.min( t, 1 );
 
@@ -50,15 +57,35 @@ exports.generate = function( x, y, context ) {
 
     self.hasSaveSurrounding = function( entrence ) {
 
-        for ( var i = neighbors.length - 1; i >= 0; i-- ) {
-            var current = neighbors[ i ];
+        var i, current;
+
+        for ( i = neighbors.length - 1; i >= 0; i-- ) {
+            current = neighbors[ i ];
 
             if ( current === entrence ) continue;
 
             if ( ! current.isAvailable() ) return false;
         }
 
+        for ( i = cornsers.length - 1; i >= 0; i-- ) {
+            current = cornsers[ i ];
+
+            if ( current.isAdjacent( entrence ) ) continue;
+
+            if ( ! current.isAvailable() ) return false;
+        }
+
         return true;
+    };
+
+    self.isAdjacent = function( tile ) {
+
+        for ( var i = neighbors.length - 1; i >= 0; i-- ) {
+            if ( neighbors[ i ] === tile ) return true;
+        }
+
+        return false;
+
     };
 
     self.updateAvailability = function( value ) {

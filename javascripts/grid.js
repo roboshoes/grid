@@ -33,13 +33,20 @@ exports.generate = function( size ) {
         for ( x = 0; x < size; x++ ) {
 
             var neighbors = [];
+            var corners = [];
 
             if ( y > 0 )        neighbors.push( matrix[ y - 1 ][ x ] );
             if ( y < size - 1 ) neighbors.push( matrix[ y + 1 ][ x ] );
             if ( x > 0 )        neighbors.push( matrix[ y ][ x - 1 ] );
             if ( x < size - 1 ) neighbors.push( matrix[ y ][ x + 1 ] );
 
+            if ( x < size - 1 && y > 0 )        corners.push( matrix[ y - 1 ][ x + 1 ] );
+            if ( x < size - 1 && y < size - 1 ) corners.push( matrix[ y + 1 ][ x + 1 ] );
+            if ( x > 0 && y < size - 1 )        corners.push( matrix[ y + 1 ][ x - 1 ] );
+            if ( x > 0 && y > 0 )               corners.push( matrix[ y - 1 ][ x - 1 ] );
+
             matrix[ y ][ x ].setNeighbors( neighbors );
+            matrix[ y ][ x ].setCorners( corners );
         }
     }
 };
@@ -91,13 +98,12 @@ function next() {
     var probe;
     var tile;
 
-
     while ( checkPool.length > 0 ) {
 
         probe = checkPool[ 0 ];
         tile = probe.getAvailableNeighbor();
 
-        if ( tile ) {
+        if ( tile && ! tile.isComplete() ) {
 
             tile.updateAvailability( false );
             activeTiles.push( tile );

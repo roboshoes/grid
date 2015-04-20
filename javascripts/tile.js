@@ -1,4 +1,4 @@
-var config = require( "./config" );
+var config  = require( "./config" );
 var shuffle = require( "mout/array/shuffle" );
 
 exports.generate = function( x, y, context ) {
@@ -23,16 +23,16 @@ exports.generate = function( x, y, context ) {
     self.render = function() {
         available = false;
 
-        t += config.speed;
-        t = Math.min( t, 1 );
+        if ( config.hyperlapse ) t = 1;
+        else t = Math.min( t, t = config.speed );
 
         var size = Math.ceil( config.size * t );
         var half = Math.ceil( config.size * t * 0.5 );
 
         context.beginPath();
-        context.fillStyle = "black";
         context.rect( - half , -half, size, size );
         context.fill();
+        context.stroke();
     };
 
     self.isComplete = function() {

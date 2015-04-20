@@ -1,20 +1,20 @@
-var grid = require( "./grid" );
-var stage = require( "./stage" );
+var grid   = require( "./grid" );
+var stage  = require( "./stage" );
 var config = require( "./config" );
+var mask   = require( "./mask" );
 
 var canvas = document.querySelector( "#canvas" );
 var context = canvas.getContext( "2d" );
 
 function init() {
+
     onResize();
     clear();
 
     grid.setContext( context );
     grid.generate( config.gridsize );
-
-    var center = Math.floor( config.gridsize / 2 );
-
-    grid.start( center, center );
+    grid.mask( mask );
+    grid.start();
 
     render();
 }

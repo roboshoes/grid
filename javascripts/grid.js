@@ -51,6 +51,10 @@ exports.generate = function( size ) {
     }
 };
 
+exports.mask = function( transform ) {
+    transform( matrix );
+};
+
 exports.start = function( x, y ) {
 
     x = x || 0;

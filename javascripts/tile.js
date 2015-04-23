@@ -24,7 +24,7 @@ exports.generate = function( x, y, context ) {
         available = false;
 
         if ( config.hyperlapse ) t = 1;
-        else t = Math.min( t, t = config.speed );
+        else t = Math.min( t, t + config.speed );
 
         var size = Math.ceil( config.size * t );
         var half = Math.ceil( config.size * t * 0.5 );

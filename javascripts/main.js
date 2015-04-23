@@ -12,7 +12,7 @@ function init() {
     clear();
 
     grid.setContext( context );
-    grid.generate( config.gridsize );
+    grid.generate( config.gridWidth, config.gridHeight );
     grid.mask( mask );
     grid.start();
 

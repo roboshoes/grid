@@ -1,6 +1,7 @@
 module.exports = {
-    size: 8,
+    size: 5,
     speed: 0.1,
-    gridsize: 150,
+    gridWidth: 130,
+    gridHeight: 130,
     hyperlapse: true
 };

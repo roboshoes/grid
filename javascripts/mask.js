@@ -4,21 +4,19 @@ var config = require( "./config" );
 module.exports = function( matrix ) {
 
     var imageData = image(
-        "MENES",
+        "GRID",
         config.gridWidth,
         config.gridHeight
     );
 
     var data = imageData.data;
 
-    var length = matrix.length;
-    var tile;
+    var colLength = matrix.length;
+    var rowLength = matrix[ 0 ].length;
 
-    for ( var y = 0; y < matrix.length; y++ ) {
-        for ( var x = 0; x < matrix[ y ].length; x++ ) {
-            tile = matrix[ y ][ x ];
-
-            tile.updateAvailability( data[ ( y * length + x ) * 4 + 3 ] === 0 );
+    for ( var y = 0; y < colLength; y++ ) {
+        for ( var x = 0; x < rowLength; x++ ) {
+            matrix[ y ][ x ].updateAvailability( data[ ( y * rowLength + x ) * 4 + 3 ] === 0 );
         }
     }
 

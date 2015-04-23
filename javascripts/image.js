@@ -9,7 +9,7 @@ module.exports = function( string, width, height ) {
     context.clearRect( 0, 0, width, height );
 
     context.fillStyle = "black";
-    context.font = "35px sans-serif";
+    context.font = "40px sans-serif";
     context.textAlign = "center";
     context.textBaseline = "middle";
     context.fillText( string, width / 2, height / 2 );

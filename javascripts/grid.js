@@ -77,25 +77,28 @@ function renderActive() {
 
     var x, y, current;
 
-    for( var i = 0, length = activeTiles.length; i < length; i++ ) {
-        current = activeTiles[ i ];
+    for ( var k = 0; k < config.cyclesPerFrame; k++ ) {
 
-        x = current.x * config.size + config.size / 2 + config.canvasPadding;
-        y = current.y * config.size + config.size / 2 + config.canvasPadding;
+        for( var i = 0, length = activeTiles.length; i < length; i++ ) {
+            current = activeTiles[ i ];
 
-        context.translate( x, y ); // save
+            x = current.x * config.size + config.size / 2 + config.canvasPadding;
+            y = current.y * config.size + config.size / 2 + config.canvasPadding;
 
-            current.render();
+            context.translate( x, y ); // save
 
-            if ( current.isComplete() ) {
-                checkPool.unshift( activeTiles.splice( i, 1 )[ 0 ] );
-                i--;
-                length--;
+                current.render();
 
-                next();
-            }
+                if ( current.isComplete() ) {
+                    checkPool.unshift( activeTiles.splice( i, 1 )[ 0 ] );
+                    i--;
+                    length--;
 
-        context.translate( -x, - y ); // restore
+                    next();
+                }
+
+            context.translate( -x, - y ); // restore
+        }
     }
 }
 

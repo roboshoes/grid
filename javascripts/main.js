@@ -1,5 +1,4 @@
 var grid   = require( "./grid" );
-var stage  = require( "./stage" );
 var config = require( "./config" );
 var mask   = require( "./mask" );
 
@@ -8,7 +7,7 @@ var context = canvas.getContext( "2d" );
 
 function init() {
 
-    onResize();
+    setSize();
     clear();
 
     grid.setContext( context );
@@ -26,12 +25,12 @@ function render() {
 }
 
 function clear() {
-    context.clearRect( 0, 0, stage.width, stage.height );
+    context.clearRect( 0, 0, canvas.width, canvas.height );
 }
 
-function onResize() {
-    canvas.width = stage.width = window.innerWidth;
-    canvas.height = stage.height = window.innerHeight;
+function setSize() {
+    canvas.width = config.gridWidth * config.size + config.canvasPadding * 2;
+    canvas.height = config.gridHeight * config.size + config.canvasPadding * 2;
 }
 
 init();

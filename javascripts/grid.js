@@ -1,5 +1,4 @@
 var tile = require( "./tile" );
-var stage = require( "./stage" );
 var config = require( "./config" );
 
 var exports = module.exports = {};
@@ -81,8 +80,8 @@ function renderActive() {
     for( var i = 0, length = activeTiles.length; i < length; i++ ) {
         current = activeTiles[ i ];
 
-        x = stage.centerX - gridWidth * config.size / 2 + current.x * config.size;
-        y = stage.centerY - gridHeight * config.size / 2 + current.y * config.size;
+        x = current.x * config.size + config.size / 2 + config.canvasPadding;
+        y = current.y * config.size + config.size / 2 + config.canvasPadding;
 
         context.translate( x, y ); // save
 

@@ -7,7 +7,7 @@ var activeTiles;
 var context;
 var gridWidth = 0;
 var gridHeight = 0;
-var checkPool = window.checkPool = [];
+var checkPool = [];
 
 exports.setContext = function( value ) {
     context = value;
@@ -20,6 +20,7 @@ exports.generate = function( width, height ) {
 
     matrix = [];
     activeTiles = [];
+    checkPool = [];
 
     var x, y;
 

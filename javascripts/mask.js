@@ -4,7 +4,7 @@ var config = require( "./config" );
 module.exports = function( matrix ) {
 
     var imageData = image(
-        "GRID",
+        config.message,
         config.gridWidth,
         config.gridHeight
     );

@@ -7,6 +7,13 @@ var context = canvas.getContext( "2d" );
 
 function init() {
 
+    setup();
+    render();
+
+    config.on( "render", setup );
+}
+
+function setup() {
     setSize();
     clear();
 
@@ -14,8 +21,6 @@ function init() {
     grid.generate( config.gridWidth, config.gridHeight );
     grid.mask( mask );
     grid.start();
-
-    render();
 }
 
 function render() {

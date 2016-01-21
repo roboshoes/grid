@@ -16,10 +16,14 @@ fillIn( exports, {
     gridHeight: 106,
     hyperlapse: true,
     canvasPadding: 5,
-    cyclesPerFrame: 1,
+    cyclesPerFrame: 5,
     message: "GRID",
+    startColor: "#000000",
+    endColor: "#b612e8",
+
     render: function() {
         exports.size = exports._size;
+        exports.emit( "update" );
         exports.emit( "render" );
     }
 } );
@@ -31,6 +35,8 @@ gui.add( exports, "gridHeight", 10, 1000 ).name( "blocks on y axis" );
 gui.add( exports, "_size", 1, 100 ).name( "block size" ).onFinishChange( exports.render );
 gui.add( exports, "speed", 0, 1 );
 gui.add( exports, "hyperlapse" ).onChange( onHyperlapseChange );
+gui.addColor( exports, "startColor" );
+gui.addColor( exports, "endColor" );
 
 onHyperlapseChange();
 

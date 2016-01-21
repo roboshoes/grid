@@ -6,8 +6,10 @@ exports.generate = function( x, y, context ) {
     var self = {};
     var t = 0;
     var neighbors;
-    var cornsers;
+    var corners;
     var available = true;
+    var color = config.startColor;
+    var colorPercent = 0;
 
     self.x = x;
     self.y = y;
@@ -17,7 +19,7 @@ exports.generate = function( x, y, context ) {
     };
 
     self.setCorners = function( array ) {
-        cornsers = array;
+        corners = array;
     };
 
     self.render = function() {
@@ -30,9 +32,23 @@ exports.generate = function( x, y, context ) {
         var half = Math.ceil( config.size * t * 0.5 );
 
         context.beginPath();
-        context.rect( - half , -half, size, size );
+        context.rect( - half , - half, size, size );
+        context.fillStyle = color;
+        context.strokeStyle = color;
         context.fill();
         context.stroke();
+    };
+
+    self.setColor = function( value ) {
+        color = value;
+    };
+
+    self.setColorFactor = function( value ) {
+        colorPercent = value;
+    };
+
+    self.getColorFactor = function() {
+        return colorPercent;
     };
 
     self.isComplete = function() {
@@ -65,8 +81,8 @@ exports.generate = function( x, y, context ) {
             if ( ! current.isAvailable() ) return false;
         }
 
-        for ( i = cornsers.length - 1; i >= 0; i-- ) {
-            current = cornsers[ i ];
+        for ( i = corners.length - 1; i >= 0; i-- ) {
+            current = corners[ i ];
 
             if ( current.isAdjacent( entrence ) ) continue;
 

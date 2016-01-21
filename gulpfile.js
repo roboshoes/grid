@@ -2,23 +2,26 @@ var gulp       = require( "gulp" );
 var browserify = require( "gulp-browserify" );
 var connect    = require( "gulp-connect" );
 var jade       = require( "gulp-jade" );
-var gutil      = require( "gulp-util" );
 var less       = require( "gulp-less" );
-var minifyCSS  = require( "gulp-minify-css" );
+var cssnano    = require( "gulp-cssnano" );
+
+function onError( error ) {
+    console.log( error );
+    this.emit( "end" );
+}
 
 gulp.task( "scripts", function() {
     gulp.src( "javascripts/main.js" )
         .pipe( browserify ( {
             debug: true,
         } ) )
-        .on( "error", gutil.log )
+        .on( "error", onError )
         .pipe( gulp.dest( "public/javascripts" ) );
 } );
 
 gulp.task( "connect", function() {
     connect.server( {
-        root: "public",
-        livereload: false
+        root: "public"
     } );
 } );
 
@@ -37,7 +40,7 @@ gulp.task( "watch", function() {
 gulp.task( "less", function() {
     gulp.src( "less/**/*.less" )
         .pipe( less() )
-        .pipe( minifyCSS() )
+        .pipe( cssnano() )
         .pipe( gulp.dest( "./public/stylesheets" ) );
 } );
 

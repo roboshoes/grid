@@ -1,5 +1,7 @@
 var tile = require( "./tile" );
 var config = require( "./config" );
+var gradient = require( "./gradient" );
+
 
 var exports = module.exports = {};
 var matrix;
@@ -115,7 +117,13 @@ function next() {
 
         if ( tile && ! tile.isComplete() ) {
 
+            var color = gradient.getColorFrom( probe.getColorFactor() );
+            var percent = gradient.getPercentFrom( probe.getColorFactor() );
+
+            tile.setColorFactor( percent );
+            tile.setColor( color );
             tile.updateAvailability( false );
+
             activeTiles.push( tile );
 
             break;

@@ -1,7 +1,6 @@
 var config = require( "./config" );
 
 var WIDTH = 1000;
-var INCREASE = 0.0005;
 
 config.on( "update", onUpdateGradient );
 
@@ -43,11 +42,11 @@ module.exports.get = function() {
 };
 
 module.exports.getColorFrom = function( base ) {
-    return calculate( Math.min( base + INCREASE, 1 ) );
+    return calculate( Math.min( base + config.colorIncrease, 1 ) );
 };
 
 module.exports.getPercentFrom = function( base ) {
-    return Math.min( base + INCREASE, 1 );
+    return Math.min( base + config.colorIncrease, 1 );
 }
 
 onUpdateGradient();

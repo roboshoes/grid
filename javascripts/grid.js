@@ -73,10 +73,6 @@ exports.start = function( x, y ) {
 };
 
 exports.render = function() {
-    renderActive();
-};
-
-function renderActive() {
 
     var x, y, current;
 
@@ -103,7 +99,7 @@ function renderActive() {
             context.translate( -x, - y ); // restore
         }
     }
-}
+};
 
 function next() {
 
@@ -126,7 +122,7 @@ function next() {
 
             activeTiles.push( tile );
 
-            break;
+            return;
 
         } else {
 

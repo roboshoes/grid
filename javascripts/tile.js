@@ -61,7 +61,7 @@ exports.generate = function( x, y, context ) {
         for ( var i = neighbors.length - 1; i >= 0; i-- ) {
             current = neighbors[ i ];
 
-            if ( current.hasSaveSurrounding( self ) ) {
+            if ( current.hasSaveSurrounding( self ) && current.isAvailable() ) {
                 return current;
             }
         }
